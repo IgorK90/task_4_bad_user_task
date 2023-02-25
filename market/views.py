@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from market.models import Car, Order, Payment
+from django.contrib.auth.models import User
 
 
 def show_cars(request: HttpRequest) -> HttpResponse:
@@ -8,8 +9,9 @@ def show_cars(request: HttpRequest) -> HttpResponse:
     # если там пусто, то нужно перенаправить на /login
     # получить user_id можно так:
     # user_id = request.session.get("user_id", None)
-    user_id = request.session.get("user_id", None)
-    if user_id is None:
+    # user_id = request.session.get("user_id", None)
+    user = request.user
+    if  not user.is_authenticated:
         return HttpResponseRedirect("/login")
     context = {
         "cars": Car.objects.all()

@@ -1,10 +1,11 @@
 from django.test import TestCase
-from market.models import Car, Purchase, Order, Payment, BadUser
-
+from market.models import Car, Purchase, Order, Payment
+from django.contrib.auth.models import User
 
 class PurchaseTest(TestCase):
     def setUp(self):
-        BadUser.objects.create(username="bill", password="gates")
+        # BadUser.objects.create(username="bill", password="gates")
+        User.objects.create_user(username="bill", password="gates")
 
     def test_correct_login(self):
         response = self.client.get("/")

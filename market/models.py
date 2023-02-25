@@ -1,13 +1,13 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Модель называется BadUser, потому что в Django есть нормальная модель User, которую мы будем использовать
-class BadUser(models.Model):
-    username = models.CharField(max_length=1000)
-    password = models.CharField(max_length=1000)
-
-    def __str__(self):
-        return f"{self.username}"
+# class BadUser(models.Model):
+#     username = models.CharField(max_length=1000)
+#     password = models.CharField(max_length=1000)
+#
+#     def __str__(self):
+#         return f"{self.username}"
 
 
 class Car(models.Model):
